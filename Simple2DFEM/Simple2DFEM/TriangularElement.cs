@@ -26,8 +26,16 @@ namespace Simple2DFEM
         private double Young;
         private double Poisson;
         private DenseMatrix KeMatrix;
-        private DenseVector StrainVector;
-        private DenseVector StressVector;
+        public DenseVector StrainVector
+        {
+            get;
+            private set;
+        }
+        public DenseVector StressVector
+        {
+            get;
+            private set;
+        }
 
         public TriangularElement()
         {
@@ -143,6 +151,7 @@ namespace Simple2DFEM
             return KeMatrix;
         }
 
+        // ひずみベクトルを計算する
         public void makeStrainVector(DenseVector dispvector)
         {
             DenseMatrix bMatrix = makeBMatirx();
@@ -151,6 +160,7 @@ namespace Simple2DFEM
             Console.WriteLine(StrainVector);
         }
 
+        // 応力ベクトルを計算する
         public void makeStressVector()
         {
             if(StrainVector == null)

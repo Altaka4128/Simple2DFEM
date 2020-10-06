@@ -311,9 +311,9 @@ namespace Simple2DFEM
 
             // FEM解析を実行する
             fem.Analysis();
-            List<TriangularElement> elems = fem.TriElems;
 
             // モデルを描画する
+            List<TriangularElement> elems = fem.TriElems;
             DenseVector dispElemVector = DenseVector.Create(6, 0.0);
             DenseVector dispVector = fem.DispVector;
             for (int i = 0; i < elems.Count; i++)
@@ -341,6 +341,7 @@ namespace Simple2DFEM
         {
             fem = null;
             this.Canvas.Children.Clear();
+            DrawXYArrow();
         }
 
         private void DrawXYArrow()

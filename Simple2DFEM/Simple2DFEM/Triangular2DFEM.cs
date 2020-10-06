@@ -77,6 +77,7 @@ namespace Simple2DFEM
             Console.WriteLine(kMatrix);
 
             // 境界条件を考慮して修正する
+            ForceVector = ForceVector - kMatrix * DispVector;
             for (int i = 0; i < Rest.Count; i++)
             {
                 if(Rest[i] == true)
@@ -90,11 +91,15 @@ namespace Simple2DFEM
                         kMatrix[k, i] = 0.0;
                     }
                     kMatrix[i, i] = 1.0;
+
+                    ForceVector[i] = DispVector[i];
                 }
             }
 
             Console.WriteLine("Kマトリックス(境界条件考慮)");
             Console.WriteLine(kMatrix);
+            Console.WriteLine("荷重ベクトル(境界条件考慮)");
+            Console.WriteLine(ForceVector);
 
             return kMatrix;
         }
